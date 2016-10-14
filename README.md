@@ -1,16 +1,15 @@
-[Docker](http://www.docker.com/) image for [PHP Composer](https://getcomposer.org).
-
 [![](https://images.microbadger.com/badges/image/herloct/composer.svg)](http://microbadger.com/images/herloct/composer "Get your own image badge on microbadger.com")
-
-## What's Inside
-
-This image is based on [official PHP image](https://hub.docker.com/_/php/),
-using Alpine Linux instead of Debian for smaller size.
 
 ## Supported tags and respective `Dockerfile` links
 
 * [`PHP 7.0.11`, `latest`](https://github.com/herloct/docker-composer/blob/master/7.0.11/Dockerfile)
 * [`PHP 5.6.26`](https://github.com/herloct/docker-composer/blob/master/5.6.26/Dockerfile)
+
+## What is Composer?
+
+Composer is a tool for dependency management in PHP. It allows you to declare the libraries your project depends on and it will manage (install/update) them for you.
+
+> (https://getcomposer.org/doc/00-intro.md)
 
 ## How to use this image
 
@@ -23,7 +22,7 @@ docker run --rm \
     herloct/composer [<options>]
 ```
 
-**Remember to always add `--ignore-platform-reqs` for `install`, `require`, and `update` command, since this image
+> **Remember to always add `--ignore-platform-reqs` for `install`, `require`, and `update` command, since this image
 doesn't add any `ext-*` other than what php:*-alpine provides.**
 
 For example, to install dependencies.
