@@ -4,12 +4,13 @@
 
 ## What's Inside
 
-This image is based on [official PHP 7.0 image](https://hub.docker.com/_/php/),
+This image is based on [official PHP image](https://hub.docker.com/_/php/),
 using Alpine Linux instead of Debian for smaller size.
 
 ## Supported tags and respective `Dockerfile` links
 
-* [`1.2.1`, `latest`](https://github.com/herloct/docker-composer/blob/master/1.2.1/Dockerfile)
+* [`PHP 7.0.11`, `latest`](https://github.com/herloct/docker-composer/blob/master/7.0.11/Dockerfile)
+* [`PHP 5.6.26`](https://github.com/herloct/docker-composer/blob/master/5.6.26/Dockerfile)
 
 ## How to use this image
 
@@ -23,7 +24,7 @@ docker run --rm \
 ```
 
 **Remember to always add `--ignore-platform-reqs` for `install`, `require`, and `update` command, since this image
-doesn't add any `ext-*` other than what php:7.*-alpine provides.**
+doesn't add any `ext-*` other than what php:*-alpine provides.**
 
 For example, to install dependencies.
 
