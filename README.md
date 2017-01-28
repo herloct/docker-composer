@@ -4,8 +4,7 @@
 
 * [`PHP 7.0.12`, `latest`](https://github.com/herloct/docker-composer/blob/master/7.0.12/Dockerfile)
 * [`PHP 7.0.11`](https://github.com/herloct/docker-composer/blob/master/7.0.11/Dockerfile)
-* [`PHP 5.6.27`](https://github.com/herloct/docker-composer/blob/master/5.6.27/Dockerfile)
-* [`PHP 5.6.26`](https://github.com/herloct/docker-composer/blob/master/5.6.26/Dockerfile)
+* [`PHP 5.6`](https://github.com/herloct/docker-composer/blob/master/5.6/Dockerfile)
 
 ## What is Composer?
 
