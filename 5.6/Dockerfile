@@ -18,13 +18,13 @@ RUN apk update --no-cache \
     && ( \
         cd /tmp \
         && install-composer.sh \
-        && rm -rf /var/cache/apk/* /var/tmp/* /tmp/* \
+        && rm /usr/local/bin/install-composer.sh \
     ) \
 
     && composer global require -a --prefer-dist "hirak/prestissimo:^0.3" \
     && rm -rf /var/cache/apk/* /var/tmp/* /tmp/*
 
-ENV PATH $COMPOSER_HOME/vendor/bin:$PATH \
+ENV PATH=$COMPOSER_HOME/vendor/bin:$PATH \
     COMPOSER_ALLOW_SUPERUSER=0
 
 VOLUME ["/project", "$COMPOSER_HOME/cache"]
