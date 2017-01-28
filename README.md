@@ -2,9 +2,9 @@
 
 ## Supported tags and respective `Dockerfile` links
 
-* [`PHP 7.1`, `latest`](https://github.com/herloct/docker-composer/blob/master/7.1/Dockerfile)
-* [`PHP 7.0`](https://github.com/herloct/docker-composer/blob/master/7.0/Dockerfile)
-* [`PHP 5.6`](https://github.com/herloct/docker-composer/blob/master/5.6/Dockerfile)
+* Composer 1.3.2 + PHP 7.1.1: [`1.3.2-php7.1`, `latest`](https://github.com/herloct/docker-composer/blob/1.3.2/7.1/Dockerfile)
+* Composer 1.3.2 + PHP 7.0.15: [`1.3.2-php7.0`](https://github.com/herloct/docker-composer/blob/1.3.2/7.0/Dockerfile)
+* Composer 1.3.2 + PHP 5.6.30: [`1.3.2-php5.6`](https://github.com/herloct/docker-composer/blob/1.3.2/5.6/Dockerfile)
 
 ## What is Composer?
 
@@ -41,6 +41,15 @@ If you want to cache composer for faster dependency install/update, just add vol
 docker run --rm \
     -e LOCAL_USER_ID=$(id -u) \
     -v /local/path:/project \
-    -v /local/storages/composer:/composer \
+    -v /local/storages/composer:/composer/cache \
     herloct/composer install --ignore-platform-reqs
 ```
+
+## Environment Variables
+
+* **LOCAL_USER_ID**: User ID (UID) for container, so it could have same permission as host user.
+
+## Volumes
+
+* **/project**: Your PHP project directory.
+* **/composer/cache**: Composer directory (cache, global dependencies, etc).
