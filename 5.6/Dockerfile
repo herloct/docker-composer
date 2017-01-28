@@ -2,7 +2,8 @@ FROM php:5.6.30-alpine
 
 MAINTAINER herloct <herloct@gmail.com>
 
-ENV COMPOSER_HOME=/composer \
+ENV COMPOSER_VERSION=1.3.2 \
+    COMPOSER_HOME=/composer \
     COMPOSER_ALLOW_SUPERUSER=1
 
 COPY install-composer.sh /usr/local/bin/install-composer.sh
