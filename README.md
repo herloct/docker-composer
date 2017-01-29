@@ -12,44 +12,45 @@ Composer is a tool for dependency management in PHP. It allows you to declare th
 
 > https://getcomposer.org/doc/00-intro.md
 
+## Is it better than [official Composer images](https://hub.docker.com/r/_/composer/)?
+
+I'm using official image's script as reference, and major PHP versions (5.6, 7.0, and 7.1) as Base Image.  
+This image also use [hirak/prestissimo](https://github.com/hirak/prestissimo) for faster downloads.
+
 ## How to use this image
 
-Basic usage using current user id (uid).
+Basic usage using current user.
 
 ```sh
 docker run --rm \
-    -e LOCAL_USER_ID=$(id -u) \
-    -v /local/path:/project \
+    --user $(id -u):$(id -g) \
+    --volume /local/path:/project \
     herloct/composer [<options>]
 ```
 
-> **Remember to always add `--ignore-platform-reqs` for `install`, `require`, and `update` command, since this image
+> **Remember to add `--ignore-platform-reqs` for `install`, `require`, and `update` command, since this image
 doesn't add any `ext-*` other than what php:*-alpine provides.**
 
 For example, to install dependencies.
 
 ```sh
 docker run --rm \
-    -e LOCAL_USER_ID=$(id -u) \
-    -v /local/path:/project \
+    --user $(id -u):$(id -g) \
+    --volume /local/path:/project \
     herloct/composer install --ignore-platform-reqs
 ```
 
-If you want to cache composer for faster dependency install/update, just add volume to `/composer`.
+If you want to cache composer for faster install/update, just add volume to `/composer/cache`.
 
 ```sh
 docker run --rm \
-    -e LOCAL_USER_ID=$(id -u) \
-    -v /local/path:/project \
-    -v /local/storages/composer:/composer/cache \
+    --user $(id -u):$(id -g) \
+    --volume /local/path:/project \
+    --volume /local/composer:/composer/cache \
     herloct/composer install --ignore-platform-reqs
 ```
-
-## Environment Variables
-
-* **LOCAL_USER_ID**: User ID (UID) for container, so it could have same permission as host user.
 
 ## Volumes
 
 * **/project**: Your PHP project directory.
-* **/composer/cache**: Composer directory (cache, global dependencies, etc).
+* **/composer/cache**: Composer cache directory.

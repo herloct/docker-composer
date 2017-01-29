@@ -4,17 +4,19 @@ MAINTAINER herloct <herloct@gmail.com>
 
 ENV COMPOSER_VERSION=1.3.2 \
     COMPOSER_HOME=/composer \
-    COMPOSER_ALLOW_SUPERUSER=1
+    PATH=$COMPOSER_HOME/vendor/bin:$PATH
 
 COPY install-composer.sh /usr/local/bin/install-composer.sh
 
 RUN apk update --no-cache \
     && apk add --no-cache \
+        curl \
         git \
+        mercurial \
+        openssh \
         openssl \
-        su-exec \
-
-    && mkdir -p /project $COMPOSER_HOME \
+        subversion \
+        tini \
 
     && ( \
         cd /tmp \
@@ -22,16 +24,14 @@ RUN apk update --no-cache \
         && rm /usr/local/bin/install-composer.sh \
     ) \
 
+    && export COMPOSER_ALLOW_SUPERUSER=1 \
     && composer global require -a --prefer-dist "hirak/prestissimo:^0.3" \
-    && rm -rf /var/cache/apk/* /var/tmp/* /tmp/*
+    && export COMPOSER_ALLOW_SUPERUSER=0 \
 
-ENV PATH=$COMPOSER_HOME/vendor/bin:$PATH \
-    COMPOSER_ALLOW_SUPERUSER=0
+    && rm -rf /var/cache/apk/* /var/tmp/* /tmp/*
 
 VOLUME ["/project", "$COMPOSER_HOME/cache"]
 WORKDIR /project
 
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-
-ENTRYPOINT ["entrypoint.sh", "composer"]
+ENTRYPOINT ["/sbin/tini", "--", "composer"]
 CMD ["--version"]
