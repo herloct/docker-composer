@@ -28,6 +28,8 @@ RUN apk update --no-cache \
     && composer global require -a --prefer-dist "hirak/prestissimo:^0.3" \
     && export COMPOSER_ALLOW_SUPERUSER=0 \
 
+    && chmod -R 0777 $COMPOSER_HOME/cache \
+
     && rm -rf /var/cache/apk/* /var/tmp/* /tmp/*
 
 VOLUME ["/project", "$COMPOSER_HOME/cache"]
