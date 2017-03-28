@@ -16,7 +16,6 @@ RUN apk update --no-cache \
         openssh \
         openssl \
         subversion \
-        tini \
 
     && ( \
         cd /tmp \
@@ -35,5 +34,5 @@ RUN apk update --no-cache \
 VOLUME ["/project", "$COMPOSER_HOME/cache"]
 WORKDIR /project
 
-ENTRYPOINT ["/sbin/tini", "--", "composer"]
+ENTRYPOINT ["composer"]
 CMD ["--version"]
