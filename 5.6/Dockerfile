@@ -17,6 +17,7 @@ RUN apk update --no-cache \
         openssl \
         subversion \
 
+    && mkdir -p $COMPOSER_HOME \
     && ( \
         cd /tmp \
         && install-composer.sh \
