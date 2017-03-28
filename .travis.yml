@@ -6,14 +6,6 @@ services:
 
 language: php
 
-php:
-  - '5.6'
-  - '7.0'
-  - '7.1'
-
-env:
-  - DIR=7.1
-
 matrix:
   fast_finish: true
   include:
@@ -24,12 +16,15 @@ matrix:
     - php: '7.1'
       env: DIR=7.1
 
+install: true
+
 before_script:
   - docker build --rm --tag herloct/composer:$TRAVIS_BRANCH-$DIR $DIR
   - docker run --rm herloct/composer:$TRAVIS_BRANCH-$DIR
-  - rm -rf tests/*
+  - rm -rf tests
 
 script:
+  - mkdir tests
   - cd tests
   - docker run --rm --volume $(pwd):/project herloct/composer:$TRAVIS_BRANCH-$DIR require slim/slim
   - if [[ ! -f "composer.json" ]]; then exit 1; fi
