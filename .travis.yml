@@ -1,0 +1,32 @@
+sudo: required
+
+services:
+  - docker
+
+language: php
+
+php:
+  - '5.6'
+  - '7.0'
+  - '7.1'
+
+env:
+  - DIR=7.1
+
+matrix:
+  fast_finish: true
+  include:
+    - php: '5.6'
+      env: DIR=5.6
+    - php: '7.0'
+      env: DIR=7.0
+    - php: '7.1'
+      env: DIR=7.1
+
+before_script:
+  - docker build --rm --tag herloct/composer:$TRAVIS_BRANCH-$DIR $DIR
+  - docker run --rm herloct/composer:$TRAVIS_BRANCH-$DIR
+  - rm -rf tests/*
+
+script:
+  - docker run --rm herloct/composer:$TRAVIS_BRANCH-$DIR require slim/slim -d tests
