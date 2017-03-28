@@ -1,5 +1,3 @@
-[![](https://images.microbadger.com/badges/image/herloct/composer.svg)](http://microbadger.com/images/herloct/composer "Get your own image badge on microbadger.com")
-
 ## Supported tags and respective `Dockerfile` links
 
 * Composer 1.4.1 + PHP 7.1.1: [`1.4.1-php7.1`, `latest`](https://github.com/herloct/docker-composer/blob/1.4.1/7.1/Dockerfile)
