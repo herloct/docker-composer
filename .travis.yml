@@ -18,7 +18,6 @@ cache:
 before_script:
   - docker build --rm --tag herloct/composer:$TRAVIS_BRANCH-$DIR $DIR
   - docker run --rm herloct/composer:$TRAVIS_BRANCH-$DIR
-  - mkdir composer
   - rm -rf tests
 
 script:
