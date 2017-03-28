@@ -50,5 +50,5 @@ docker run --rm \
 
 ## Volumes
 
-* **/project**: Your PHP project directory.
-* **/composer/cache**: Composer cache directory.
+* `/project`: Your PHP project directory.
+* `/composer/cache`: Composer cache directory.
