@@ -18,7 +18,6 @@ cache:
 before_script:
   - docker build --rm --tag herloct/composer:$TRAVIS_BRANCH-$DIR $DIR
   - docker run --rm herloct/composer:$TRAVIS_BRANCH-$DIR
-  - ls -la composer
   - rm -rf tests
 
 script:
@@ -27,3 +26,5 @@ script:
   - ls -la tests
   - if [[ ! -f "tests/composer.json" ]]; then exit 1; fi
   - if [[ ! -f "tests/composer.lock" ]]; then exit 1; fi
+  - ls -la composer
+  - if [[ ! -d "composer/files/slim" ]]; then exit 1; fi
