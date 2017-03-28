@@ -11,14 +11,19 @@ matrix:
     - env: DIR=7.0
     - env: DIR=7.1
 
+cache:
+  directories:
+    - composer
+
 before_script:
   - docker build --rm --tag herloct/composer:$TRAVIS_BRANCH-$DIR $DIR
   - docker run --rm herloct/composer:$TRAVIS_BRANCH-$DIR
+  - mkdir composer
   - rm -rf tests
 
 script:
   - mkdir tests
   - cd tests
-  - docker run --rm  --user $(id -u):$(id -g) --volume $(pwd):/project herloct/composer:$TRAVIS_BRANCH-$DIR require slim/slim --ignore-platform-reqs
+  - docker run --rm  --user $(id -u):$(id -g) --volume $(pwd):/project --volume ../composer:/composer/cache herloct/composer:$TRAVIS_BRANCH-$DIR require slim/slim --ignore-platform-reqs
   - if [[ ! -f "composer.json" ]]; then exit 1; fi
   - if [[ ! -f "composer.lock" ]]; then exit 1; fi
