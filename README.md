@@ -23,7 +23,7 @@ Basic usage using current user.
 docker run --rm \
     --user $(id -u):$(id -g) \
     --volume /local/path:/project \
-    herloct/composer [<options>]
+    herloct/composer[:tag] [<options>]
 ```
 
 > **Remember to add `--ignore-platform-reqs` for `install`, `require`, and `update` command, since this image
