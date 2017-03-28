@@ -22,7 +22,8 @@ before_script:
 
 script:
   - mkdir tests
-  - chown -R $(id -u):$(id -g) tests
-  - docker run --rm  --user $(id -u):$(id -g) --volume tests:/project --volume composer:/composer/cache herloct/composer:$TRAVIS_BRANCH-$DIR require slim/slim --ignore-platform-reqs
+  - echo $USER
+  - echo $(id -u):$(id -g)
+  - docker run --rm --volume tests:/project --volume composer:/composer/cache herloct/composer:$TRAVIS_BRANCH-$DIR require slim/slim --ignore-platform-reqs
   - if [[ ! -f "tests/composer.json" ]]; then exit 1; fi
   - if [[ ! -f "tests/composer.lock" ]]; then exit 1; fi
