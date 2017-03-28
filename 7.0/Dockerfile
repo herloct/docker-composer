@@ -29,7 +29,7 @@ RUN apk update --no-cache \
 
     && chmod -R 0777 $COMPOSER_HOME/cache \
 
-    && rm -rf /var/cache/apk/* /var/tmp/* /tmp/*
+    && rm -rf /var/cache/apk/* /var/tmp/* /tmp/* $COMPOSER_HOME/cache/*
 
 VOLUME ["/project", "$COMPOSER_HOME/cache"]
 WORKDIR /project
