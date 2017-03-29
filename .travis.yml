@@ -23,7 +23,7 @@ before_script:
   - rm -rf tests
 
 script:
-  - mkPHP_VERSION tests tests/composer
+  - mkdir tests tests/composer
   - cd tests
   - >
     docker run --rm --user $(id -u):$(id -g)
