@@ -39,7 +39,7 @@ script:
   - if [[ ! -d "composer/files/slim" ]]; then exit 1; fi
 
 after_success:
-  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
   - docker push herloct/composer:$COMPOSER_VERSION-php$PHP_VERSION-$TRAVIS_BRANCH
   - if [[ $TRAVIS_TAG ]]; then
     docker tag herloct/composer:$COMPOSER_VERSION-php$PHP_VERSION-$TRAVIS_BRANCH herloct/composer:$COMPOSER_VERSION-php$PHP_VERSION;
