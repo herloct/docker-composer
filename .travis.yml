@@ -19,7 +19,7 @@ before_script:
 script:
   - mkdir tests tests/composer
   - cd tests
-  - docker run --rm --user $(id -u):$(id -g) --volume $(pwd):/project --volume composer:/composer/cache herloct/composer:$TRAVIS_BRANCH-$DIR require slim/slim --ignore-platform-reqs
+  - docker run --rm --user $(id -u):$(id -g) --volume $(pwd):/project --volume $(pwd)/composer:/composer/cache herloct/composer:$TRAVIS_BRANCH-$DIR require slim/slim --ignore-platform-reqs
   - ls -la .
   - if [[ ! -f "composer.json" ]]; then exit 1; fi
   - if [[ ! -f "composer.lock" ]]; then exit 1; fi
