@@ -4,6 +4,9 @@ dist: trusty
 services:
   - docker
 
+env:
+  - DOCKER_COMPOSER_VERSION=1.4.1
+
 matrix:
   fast_finish: true
   include:
@@ -31,3 +34,13 @@ script:
   - if [[ ! -d "vendor/slim/slim" ]]; then exit 1; fi
   - ls -la composer
   - if [[ ! -d "composer/files/slim" ]]; then exit 1; fi
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push herloct/composer:$DOCKER_COMPOSER_VERSION-php$DIR-$TRAVIS_BRANCH;
+    fi
+  - if [ "$TRAVIS_TAG" ]; then
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push herloct/composer:$DOCKER_COMPOSER_VERSION-php$DIR;
+    fi
