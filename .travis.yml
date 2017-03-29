@@ -8,27 +8,27 @@ matrix:
   fast_finish: true
   include:
     - env:
-      - DOCKER_COMPOSER_VERSION=1.4.1
-      - DIR=5.6
+      - COMPOSER_VERSION=1.4.1
+      - PHP_VERSION=5.6
     - env:
-      - DOCKER_COMPOSER_VERSION=1.4.1
-      - DIR=7.0
+      - COMPOSER_VERSION=1.4.1
+      - PHP_VERSION=7.0
     - env:
-      - DOCKER_COMPOSER_VERSION=1.4.1
-      - DIR=7.1
+      - COMPOSER_VERSION=1.4.1
+      - PHP_VERSION=7.1
 
 before_script:
-  - docker build --rm --tag herloct/composer:$TRAVIS_BRANCH-$DIR $DIR
-  - docker run --rm herloct/composer:$TRAVIS_BRANCH-$DIR
+  - docker build --rm --tag herloct/composer:$COMPOSER_VERSION-php$PHP_VERSION-$TRAVIS_BRANCH $PHP_VERSION
+  - docker run --rm herloct/composer:$COMPOSER_VERSION-php$PHP_VERSION-$TRAVIS_BRANCH
   - rm -rf tests
 
 script:
-  - mkdir tests tests/composer
+  - mkPHP_VERSION tests tests/composer
   - cd tests
   - >
     docker run --rm --user $(id -u):$(id -g)
     --volume $(pwd):/project --volume $(pwd)/composer:/composer/cache
-    herloct/composer:$TRAVIS_BRANCH-$DIR require slim/slim --ignore-platform-reqs
+    herloct/composer:$COMPOSER_VERSION-php$PHP_VERSION-$TRAVIS_BRANCH require slim/slim --ignore-platform-reqs
   - ls -la .
   - if [[ ! -f "composer.json" ]]; then exit 1; fi
   - if [[ ! -f "composer.lock" ]]; then exit 1; fi
@@ -39,11 +39,9 @@ script:
   - if [[ ! -d "composer/files/slim" ]]; then exit 1; fi
 
 after_success:
-  - if [ "$TRAVIS_BRANCH" ]; then
-    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push herloct/composer:$DOCKER_COMPOSER_VERSION-php$DIR-$TRAVIS_BRANCH;
-    fi
-  - if [ "$TRAVIS_TAG" ]; then
-    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push herloct/composer:$DOCKER_COMPOSER_VERSION-php$DIR;
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker push herloct/composer:$COMPOSER_VERSION-php$PHP_VERSION-$TRAVIS_BRANCH
+  - if [[ $TRAVIS_TAG ]]; then
+    docker tag herloct/composer:$COMPOSER_VERSION-php$PHP_VERSION-$TRAVIS_BRANCH herloct/composer:$COMPOSER_VERSION-php$PHP_VERSION;
+    docker push herloct/composer:$COMPOSER_VERSION-php$PHP_VERSION;
     fi
