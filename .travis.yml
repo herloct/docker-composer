@@ -40,9 +40,7 @@ script:
 
 after_success:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-  - if [[ $TRAVIS_BRANCH ]] && [[ -z $TRAVIS_TAG ]]; then
-    docker push herloct/composer:$COMPOSER_VERSION-php$PHP_VERSION-$TRAVIS_BRANCH;
-    fi
+  - docker push herloct/composer:$COMPOSER_VERSION-php$PHP_VERSION-$TRAVIS_BRANCH;
   - if [[ $TRAVIS_TAG ]]; then
     docker tag herloct/composer:$COMPOSER_VERSION-php$PHP_VERSION-$TRAVIS_BRANCH herloct/composer:$COMPOSER_VERSION-php$PHP_VERSION;
     docker push herloct/composer:$COMPOSER_VERSION-php$PHP_VERSION;
