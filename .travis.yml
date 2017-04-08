@@ -39,8 +39,8 @@ script:
   - if [[ ! -d "composer/files/slim" ]]; then exit 1; fi
 
 after_success:
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
   - if [[ $TRAVIS_BRANCH ]] && [[ -z $TRAVIS_TAG ]]; then
-    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
     docker push herloct/composer:$COMPOSER_VERSION-php$PHP_VERSION-$TRAVIS_BRANCH;
     fi
   - if [[ $TRAVIS_TAG ]]; then
