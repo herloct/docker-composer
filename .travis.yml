@@ -48,6 +48,6 @@ after_success:
     docker push herloct/composer:$COMPOSER_VERSION-php$PHP_VERSION;
     fi
   - if [[ $TRAVIS_TAG ]] && [[ $PHP_VERSION == "7.1"]]; then
-    docker tag herloct/composer:$COMPOSER_VERSION-php$PHP_VERSION-$TRAVIS_BRANCH herloct/composer:latest;
+    docker tag herloct/composer:$COMPOSER_VERSION-php$PHP_VERSION herloct/composer:latest;
     docker push herloct/composer:latest;
     fi
