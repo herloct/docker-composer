@@ -2,7 +2,7 @@ FROM php:5.6.30-alpine
 
 MAINTAINER herloct <herloct@gmail.com>
 
-ENV COMPOSER_VERSION=1.4.1 \
+ENV COMPOSER_VERSION=1.4.2 \
     COMPOSER_HOME=/composer \
     PATH=$COMPOSER_HOME/vendor/bin:$PATH
 

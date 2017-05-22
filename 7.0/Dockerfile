@@ -1,8 +1,8 @@
-FROM php:7.0.17-alpine
+FROM php:7.0.19-alpine
 
 MAINTAINER herloct <herloct@gmail.com>
 
-ENV COMPOSER_VERSION=1.4.1 \
+ENV COMPOSER_VERSION=1.4.2 \
     COMPOSER_HOME=/composer \
     PATH=$COMPOSER_HOME/vendor/bin:$PATH
 
