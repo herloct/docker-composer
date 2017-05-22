@@ -3,9 +3,9 @@
 
 ## Supported tags and respective `Dockerfile` links
 
-* Composer 1.4.1 + PHP 7.1.3: [`1.4.1-php7.1`, `latest`](https://github.com/herloct/docker-composer/blob/1.4.1/7.1/Dockerfile)
-* Composer 1.4.1 + PHP 7.0.17: [`1.4.1-php7.0`](https://github.com/herloct/docker-composer/blob/1.4.1/7.0/Dockerfile)
-* Composer 1.4.1 + PHP 5.6.30: [`1.4.1-php5.6`](https://github.com/herloct/docker-composer/blob/1.4.1/5.6/Dockerfile)
+* Composer 1.4.2 + PHP 7.1.5: [`1.4.1-php7.1`, `latest`](https://github.com/herloct/docker-composer/blob/1.4.2/7.1/Dockerfile)
+* Composer 1.4.2 + PHP 7.0.19: [`1.4.1-php7.0`](https://github.com/herloct/docker-composer/blob/1.4.2/7.0/Dockerfile)
+* Composer 1.4.2 + PHP 5.6.30: [`1.4.1-php5.6`](https://github.com/herloct/docker-composer/blob/1.4.2/5.6/Dockerfile)
 
 ## What is Composer?
 
@@ -15,7 +15,7 @@ Composer is a tool for dependency management in PHP. It allows you to declare th
 
 ## Is it better than [official Composer images](https://hub.docker.com/r/_/composer/)?
 
-I'm using official image's script as reference, and major PHP versions (5.6, 7.0, and 7.1) as Base Image.  
+I'm using official image's script as reference, and major PHP versions (5.6, 7.0, and 7.1) as Base Image.
 This image also use [hirak/prestissimo](https://github.com/hirak/prestissimo) for faster downloads.
 
 ## How to use this image
