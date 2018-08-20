@@ -5,6 +5,7 @@ ENV COMPOSER_VERSION=1.7.2 \
     PATH=$COMPOSER_HOME/vendor/bin:$PATH
 
 COPY install-composer.sh /usr/local/bin/install-composer.sh
+RUN chmod a+x /usr/local/bin/install-composer.sh
 
 RUN apk update --no-cache \
     && apk add --no-cache \
