@@ -3,7 +3,8 @@
 
 ## Supported tags and respective `Dockerfile` links
 
-* Composer 1.4.2 + PHP 7.1.5: [`1.4.2-php7.1`, `latest`](https://github.com/herloct/docker-composer/blob/1.4.2/7.1/Dockerfile)
+* Composer 1.7.2 + PHP 7.2.8: [`1.7.2-php7.2`, `latest`](https://github.com/herloct/docker-composer/blob/1.7.2/7.2/Dockerfile)
+* Composer 1.4.2 + PHP 7.1.5: [`1.4.2-php7.1`](https://github.com/herloct/docker-composer/blob/1.4.2/7.1/Dockerfile)
 * Composer 1.4.2 + PHP 7.0.19: [`1.4.2-php7.0`](https://github.com/herloct/docker-composer/blob/1.4.2/7.0/Dockerfile)
 * Composer 1.4.2 + PHP 5.6.30: [`1.4.2-php5.6`](https://github.com/herloct/docker-composer/blob/1.4.2/5.6/Dockerfile)
 
